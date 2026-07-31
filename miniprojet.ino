@@ -3,11 +3,11 @@
 #include <LiquidCrystal_I2C.h>
 #include <Servo.h>
 
-// Déclaration des 4 moteurs
-AF_DCMotor motor1(1);  // M1
-AF_DCMotor motor2(2);  // M2
-AF_DCMotor motor3(3);  // M3
-AF_DCMotor motor4(4);  // M4
+
+AF_DCMotor motor1(1);  
+AF_DCMotor motor2(2);  
+AF_DCMotor motor3(3);  
+AF_DCMotor motor4(4);  
 
 LiquidCrystal_I2C lcd(0x20, 20, 4);
 Servo servo1;
@@ -15,24 +15,24 @@ Servo servo2;
 char cmd;
 
 void setup() {
-  Serial.begin(9600);       // Pour affichage PC
-  Serial3.begin(9600);      // Pour Bluetooth (ex. BTBee Pro sur Mega)
+  Serial.begin(9600);       
+  Serial3.begin(9600);      
   Serial.println("Pret a recevoir les commandes Bluetooth");
 
-  // Vitesse initiale
+  
   motor1.setSpeed(200);
   motor2.setSpeed(200);
   motor3.setSpeed(200);
   motor4.setSpeed(200);
 
-  lcd.init(); // Initialisation
-  lcd.backlight(); // Allumer le rétroéclairage
+  lcd.init(); 
+  lcd.backlight(); 
   lcd.setCursor(0, 0);
   lcd.print("LCD display write something");
 
    servo1.attach(9);
   servo2.attach(10);
-  servo1.write(90);       // Position initiale
+  servo1.write(90);       
   servo2.write(90);
 }
 
@@ -40,7 +40,7 @@ void loop() {
   if (Serial3.available()) {
     cmd = Serial3.read();
 
-    // Ne garder que les lettres utiles
+    
     
       Serial.print("Commande recue : ");
       Serial.println(cmd);
@@ -50,7 +50,7 @@ void loop() {
   }
 
 
-// Fonction pour exécuter les commandes moteurs
+
 void executeCommand(char c) {
   switch (c) {
     case 'F': // Avancer
